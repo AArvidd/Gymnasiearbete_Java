@@ -1,4 +1,5 @@
 import java.awt.image.BufferedImage;
+import java.util.ArrayList;
 
 public class Camera {
 
@@ -16,9 +17,11 @@ public class Camera {
     private float[][] pixelGridY;
     private float[][] pixelGridZ;
 
+    ArrayList<Sphere> visible = new ArrayList<>();
+
     private BufferedImage image;
 
-    public Camera(float X, float Y, float Z, int pixelWidth, int pixelHeight,  float width){
+    public Camera(float X, float Y, float Z, int pixelWidth, int pixelHeight,  float width, ArrayList<Sphere> sean){
         this.X = X;
         this.Y = Y;
         this.Z = Z;
@@ -31,13 +34,15 @@ public class Camera {
 
         this.image = new BufferedImage(this.pixelWidth, this.pixelHeight, BufferedImage.TYPE_INT_RGB);
 
+        visible.addAll(sean);
+
         pixelPoint();
     }
 
     private void pixelPoint(){
-        float[][] pixelGridX = new float[pixelHeight][pixelWidth];
-        float[][] pixelGridY = new float[pixelHeight][pixelWidth];
-        float[][] pixelGridZ = new float[pixelHeight][pixelWidth];
+        float[][] pixelGridX = new float[pixelWidth][pixelHeight];
+        float[][] pixelGridY = new float[pixelWidth][pixelHeight];
+        float[][] pixelGridZ = new float[pixelWidth][pixelHeight];
 
         float deltaPixelX = width / pixelWidth;
         float deltaPixelY = height / pixelHeight;
@@ -49,10 +54,14 @@ public class Camera {
 
                 pixelGridX[pX][pY] = xCord + this.X;
                 pixelGridY[pX][pY] = 1 + this.Y;
-                pixelGridZ[pX][pY] = (height  /2) - (deltaPixelY / 2) + (pY * deltaPixelY) + this.Y;
+                pixelGridZ[pX][pY] = (height  /2) - (deltaPixelY / 2) + (pY * deltaPixelY) + this.Z;
 
             }
         }
+
+        this.pixelGridX = pixelGridX;
+        this.pixelGridY = pixelGridY;
+        this.pixelGridZ = pixelGridZ;
 
     }
 
