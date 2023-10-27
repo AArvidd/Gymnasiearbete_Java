@@ -37,26 +37,26 @@ public class Ray {
         float t1;
         float t2;
 
-        float center = -2 * (A * (X - h) + B * (Y - k) + C * (Z - l));
 
-        float sqrA = (A * (X - h) + B * (Y - k) + C * (Z - l));
-        double root = Math.sqrt((2 * (sqrA * sqrA) - 4 * (A * A + B * B + C * C) * (r * r - (X * X + Y * Y + Z * Z - 2 * (X * h + Y * k + Z * l) + h * h + k * k + l * l ))));
+        float a = (A * A + B * B + C * C);
+        float b = 2 * (A * (X - h) + B * (Y - k) + C * (X - l));
+        float c = -(r * r - (X * X + Y * Y + Z * Z - 2 * (X * h + Y * k + Z * l) + h * h + k * k + l * l));
 
-        float denominator = (2 * (A * A + B * B + C * C));
-
-        double pm = root / denominator;
+        float center = -(b / (2 * a));
+        double pm = Math.sqrt(b*b - 4 * a * c)/(2 * a);
 
         t1 = (float)(center + pm);
         t2 = (float)(center - pm);
 
-        /*
-        använ det hära
+        if(Double.isNaN(t1) && Double.isNaN(t2))
+            return -1;
 
-        t = [-2(a(x₀ - h) + b(y₀ - k) + c(z₀ - l)) ±
-            sqrt((2(a(x₀ - h) + b(y₀ - k) + c(z₀ - l))^2 - 4(a^2 + b^2 + c^2)(r^2 - (x₀^2 + y₀^2 + z₀^2 - 2(x₀h + y₀k + z₀l) + h^2 + k^2 + l^2)))
-            / (2(a^2 + b^2 + c^2)]
-         */
-        return 0;
+        if(t1 < t2)
+            return t1;
+        else
+            return t2;
+
+
 
     }
 
