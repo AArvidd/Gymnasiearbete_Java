@@ -13,8 +13,9 @@ public class Ray {
 
     private ArrayList<Sphere> scene = new ArrayList<>();
     private Ground ground;
+    private Camera camera;
 
-    public Ray(int depth, float X, float Y, float Z, float A, float B, float C, ArrayList<Sphere> scene, Ground ground) {
+    public Ray(int depth, float X, float Y, float Z, float A, float B, float C, ArrayList<Sphere> scene, Ground ground, Camera camera) {
         this.depth = depth;
 
         this.X = X;
@@ -29,8 +30,44 @@ public class Ray {
 
         this.scene = scene;
         this.ground = ground;
+
+        this.camera = camera;
     }
 
+
+    public int[] castRay() {
+        float[] intersection = findIntersection();
+
+        if (intersection[1] == -2) {
+            return camera.getSkybox();
+        }
+
+        float x = X + A * intersection[0];
+        float y = Y + B * intersection[0];
+        float z = Z + B * intersection[0];
+
+
+        if (intersection[1] == -1) {
+            int[] direct = ground.getColor(x, y);
+
+            float[] reflectDir = ground.reflect(A, B, C);
+            Ray next = new Ray(depth, x, y, z, reflectDir[0], reflectDir[1], reflectDir[2], scene, ground, camera);
+            int[] reflect = next.castRay();
+
+            int r = (int)(direct[0] * (1 - ground.getReflectivity()) + reflect[0] * ground.getReflectivity());
+            int g = (int)(direct[1] * (1 - ground.getReflectivity()) + reflect[1] * ground.getReflectivity());
+            int b = (int)(direct[2] * (1 - ground.getReflectivity()) + reflect[2] * ground.getReflectivity());
+
+            return new int[]{r, g, b};
+        }
+
+        Sphere hit = scene.get((int)intersection[1]);
+
+        int[] direct = hit.getColor();
+
+        float[] reflectDir =
+
+    }
 
     public float[] findIntersection() {
         ArrayList<Float> intersectionLength = new ArrayList<>();
@@ -54,12 +91,17 @@ public class Ray {
             }
         }
 
-        if (shortest == -1)
-            shortest = groundIntersection();
+        if (shortest == -1) {
+            shortest = findGroundIntersection();
+        }
 
 
-        if (shortest == -1)
+        if (shortest == -1) {
             shortest = -2;
+            shortestIndex = -2;
+        }
+
+        return new float[]{shortest, shortestIndex};
 
     }
 
@@ -90,8 +132,8 @@ public class Ray {
 
     }
 
-    public float groundIntersection() {
-        float t = (ground.getGround() - Z) / C;
+    public float findGroundIntersection() {
+        float t = (ground.getGroundZ() - Z) / C;
         if (t < 0)
             t = -1;
         return t;

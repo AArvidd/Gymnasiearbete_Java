@@ -3,9 +3,7 @@ import java.util.ArrayList;
 
 public class Camera {
 
-    private float X;
-    private float Y;
-    private float Z;
+    private float X, Y, Z;
 
     private float width;
     private float height;
@@ -17,11 +15,13 @@ public class Camera {
     private float[][] pixelGridY;
     private float[][] pixelGridZ;
 
+    private int[] skybox;
+
     ArrayList<Sphere> visible = new ArrayList<>();
 
     private BufferedImage image;
 
-    public Camera(float X, float Y, float Z, int pixelWidth, int pixelHeight,  float width, ArrayList<Sphere> sean){
+    public Camera(float X, float Y, float Z, int pixelWidth, int pixelHeight, float width, ArrayList<Sphere> sean, int r, int g, int b) {
         this.X = X;
         this.Y = Y;
         this.Z = Z;
@@ -36,10 +36,12 @@ public class Camera {
 
         visible.addAll(sean);
 
+        this.skybox = new int[]{r, g, b};
+
         pixelPoint();
     }
 
-    private void pixelPoint(){
+    private void pixelPoint() {
         float[][] pixelGridX = new float[pixelWidth][pixelHeight];
         float[][] pixelGridY = new float[pixelWidth][pixelHeight];
         float[][] pixelGridZ = new float[pixelWidth][pixelHeight];
@@ -47,14 +49,14 @@ public class Camera {
         float deltaPixelX = width / pixelWidth;
         float deltaPixelY = height / pixelHeight;
 
-        for (int pX = 0; pX < pixelWidth; pX++){
+        for (int pX = 0; pX < pixelWidth; pX++) {
             float xCord = (deltaPixelX / 2) - (width / 2) + (pX * deltaPixelX);
 
-            for (int pY = 0; pY < pixelHeight; pY++){
+            for (int pY = 0; pY < pixelHeight; pY++) {
 
                 pixelGridX[pX][pY] = xCord + this.X;
                 pixelGridY[pX][pY] = 1 + this.Y;
-                pixelGridZ[pX][pY] = (height  /2) - (deltaPixelY / 2) + (pY * deltaPixelY) + this.Z;
+                pixelGridZ[pX][pY] = (height / 2) - (deltaPixelY / 2) + (pY * deltaPixelY) + this.Z;
 
             }
         }
@@ -65,13 +67,15 @@ public class Camera {
 
     }
 
-    public void makeImage(){
-        for (int x = 0; x < pixelWidth; x++){
-            for (int y = 0; x < pixelWidth; y++){
+    public void makeImage() {
+        for (int x = 0; x < pixelWidth; x++) {
+            for (int y = 0; x < pixelWidth; y++) {
 
             }
         }
     }
 
-
+    public int[] getSkybox() {
+        return skybox;
+    }
 }
