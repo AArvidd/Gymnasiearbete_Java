@@ -50,11 +50,25 @@ public class Sphere {
         return reflectivity;
     }
 
-    public float[] reflect(float x, float y, float z, float a, float b, float c) {
+    public float[] reflect(float X, float Y, float Z, float a, float b, float c) {
 
         float h, k, l;
 
-        //float
+        h = X - this.X;
+        k = Y - this.Y;
+        l = Z - this.Z;
 
+        float abs = (float) Math.sqrt((h * h) + (k * k) + (l * l));
+
+        h = h / abs;
+        k = k / abs;
+        l = l / abs;
+
+        float dot = (a * h) + (b * k) + (c * l);
+        float x = a - (2 * dot * h);
+        float y = b - (2 * dot * k);
+        float z = c - (2 * dot * l);
+
+        return new float[]{x, y, z};
     }
 }

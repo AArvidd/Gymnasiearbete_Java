@@ -4,11 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3b6853aa-5a32-4314-be4b-79224c3bac3a" name="Changes" comment="påbörga kåd för att hitta vilket obejekt rayen&#10;träffa först">
+    <list default="true" id="3b6853aa-5a32-4314-be4b-79224c3bac3a" name="Changes" comment="la till reflektivitet på karken och fpbörga refliktivitet på kloten.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Camera.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Camera.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Ground.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Ground.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Pixel.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Ray.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Ray.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Sphere.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Sphere.java" afterDir="false" />
     </list>
@@ -85,7 +85,12 @@
       <workItem from="1699127399876" duration="3619000" />
       <workItem from="1699295880613" duration="1502000" />
       <workItem from="1699361529510" duration="2459000" />
-      <workItem from="1699619800032" duration="4147000" />
+      <workItem from="1699619800032" duration="4485000" />
+      <workItem from="1699722844657" duration="4354000" />
+      <workItem from="1699865592216" duration="4212000" />
+      <workItem from="1699966497754" duration="1771000" />
+      <workItem from="1700076817463" duration="3594000" />
+      <workItem from="1700224862637" duration="3754000" />
     </task>
     <task id="LOCAL-00001" summary="determend the position of eatch pixle">
       <option name="closed" value="true" />
@@ -119,7 +124,15 @@
       <option name="project" value="LOCAL" />
       <updated>1699131029677</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="la till reflektivitet på karken och fpbörga refliktivitet på kloten.">
+      <option name="closed" value="true" />
+      <created>1699624434798</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1699624434798</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -130,6 +143,7 @@
     <MESSAGE value="fortsatte" />
     <MESSAGE value="la till käd så att man kan hitta där sirken och&#10;rayen träffar" />
     <MESSAGE value="påbörga kåd för att hitta vilket obejekt rayen&#10;träffa först" />
-    <option name="LAST_COMMIT_MESSAGE" value="påbörga kåd för att hitta vilket obejekt rayen&#10;träffa först" />
+    <MESSAGE value="la till reflektivitet på karken och fpbörga refliktivitet på kloten." />
+    <option name="LAST_COMMIT_MESSAGE" value="la till reflektivitet på karken och fpbörga refliktivitet på kloten." />
   </component>
 </project>

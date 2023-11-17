@@ -18,6 +18,9 @@ public class Ground {
                 color2[i] = 255;
         }
 
+        this.color1 = color1;
+        this.color2 = color2;
+
     }
 
     public float getGroundZ() {
@@ -30,7 +33,7 @@ public class Ground {
 
     public int[] getColor(float x, float y) {
 
-        int size = 10;
+        int size = 5;
 
         boolean X = ((x % (size * 2)) - size) < 0;
         boolean Y = ((y % (size * 2)) - size) < 0;

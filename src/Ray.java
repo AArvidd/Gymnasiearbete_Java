@@ -1,4 +1,5 @@
 import java.lang.Math;
+import java.sql.SQLOutput;
 import java.util.ArrayList;
 
 public class Ray {
@@ -22,11 +23,11 @@ public class Ray {
         this.Y = Y;
         this.Z = Z;
 
-        float abs = (float) Math.sqrt((A * A) + (B * B) + (C * C));
+        double abs = Math.sqrt((A * A) + (B * B) + (C * C));
 
-        this.A = A / abs;
-        this.B = B / abs;
-        this.C = C / abs;
+        this.A = (float) (A / abs);
+        this.B = (float) (B / abs);
+        this.C = (float) (C / abs);
 
         this.scene = scene;
         this.ground = ground;
@@ -36,36 +37,47 @@ public class Ray {
 
 
     public int[] castRay() {
+
         float[] intersection = findIntersection();
+
 
         if (intersection[1] == -2) {
             return camera.getSkybox();
         }
+
 
         float x = X + A * intersection[0];
         float y = Y + B * intersection[0];
         float z = Z + B * intersection[0];
 
 
+        int[] direct;
+        float[] reflectDir;
+        float reflectivity;
+
         if (intersection[1] == -1) {
-            int[] direct = ground.getColor(x, y);
-
-            float[] reflectDir = ground.reflect(A, B, C);
-            Ray next = new Ray(depth, x, y, z, reflectDir[0], reflectDir[1], reflectDir[2], scene, ground, camera);
-            int[] reflect = next.castRay();
-
-            int r = (int)(direct[0] * (1 - ground.getReflectivity()) + reflect[0] * ground.getReflectivity());
-            int g = (int)(direct[1] * (1 - ground.getReflectivity()) + reflect[1] * ground.getReflectivity());
-            int b = (int)(direct[2] * (1 - ground.getReflectivity()) + reflect[2] * ground.getReflectivity());
-
-            return new int[]{r, g, b};
+            direct = ground.getColor(x, y);
+            reflectDir = ground.reflect(A, B, C);
+            reflectivity = ground.getReflectivity();
+        } else {
+            Sphere hit = scene.get((int) intersection[1]);
+            direct = hit.getColor();
+            reflectDir = hit.reflect(x, y, z, A, B, C);
+            reflectivity = hit.getReflectivity();
         }
 
-        Sphere hit = scene.get((int)intersection[1]);
+        if (depth == 0 || reflectivity == 0)
+            return direct;
 
-        int[] direct = hit.getColor();
 
-        float[] reflectDir =
+        Ray next = new Ray(depth - 1, x, y, z, reflectDir[0], reflectDir[1], reflectDir[2], scene, ground, camera);
+        int[] reflect = next.castRay();
+
+        int r = (int) (direct[0] * (1 - reflectivity) + reflect[0] * reflectivity);
+        int g = (int) (direct[1] * (1 - reflectivity) + reflect[1] * reflectivity);
+        int b = (int) (direct[2] * (1 - reflectivity) + reflect[2] * reflectivity);
+
+        return new int[]{r, g, b};
 
     }
 
@@ -77,8 +89,16 @@ public class Ray {
             intersectionLength.add(findSphereIntersection(current.getX(), current.getY(), current.getZ(), current.getR()));
         }
 
-        float shortest = -1;
-        int shortestIndex = -1;
+        float shortest = intersectionLength.get(0);
+        int shortestIndex = 0;
+
+        for (int i = 0; i < intersectionLength.toArray().length; i++) {
+            if (intersectionLength.get(i) == -1)
+                continue;
+            shortest = intersectionLength.get(0);
+            shortestIndex = 0;
+            break;
+        }
 
         for (int i = 0; i < intersectionLength.toArray().length; i++) {
             float test = intersectionLength.get(i);
@@ -93,6 +113,7 @@ public class Ray {
 
         if (shortest == -1) {
             shortest = findGroundIntersection();
+            shortestIndex = -1;
         }
 
 
@@ -116,7 +137,7 @@ public class Ray {
         float c = -(r * r - (X * X + Y * Y + Z * Z - 2 * (X * h + Y * k + Z * l) + h * h + k * k + l * l));
 
         float center = -(b / (2 * a));
-        double pm = Math.sqrt(b * b - 4 * a * c) / (2 * a);
+        double pm = Math.sqrt((b * b) - (4 * a * c)) / (2 * a);
 
         t1 = (float) (center + pm);
         t2 = (float) (center - pm);
