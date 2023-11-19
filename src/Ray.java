@@ -95,8 +95,8 @@ public class Ray {
         for (int i = 0; i < intersectionLength.toArray().length; i++) {
             if (intersectionLength.get(i) == -1)
                 continue;
-            shortest = intersectionLength.get(0);
-            shortestIndex = 0;
+            shortest = intersectionLength.get(i);
+            shortestIndex = i;
             break;
         }
 
@@ -131,9 +131,8 @@ public class Ray {
         float t1;
         float t2;
 
-
         float a = (A * A + B * B + C * C);
-        float b = 2 * (A * (X - h) + B * (Y - k) + C * (X - l));
+        float b = 2 * (A * (X - h) + B * (Y - k) + C * (Z - l));
         float c = -(r * r - (X * X + Y * Y + Z * Z - 2 * (X * h + Y * k + Z * l) + h * h + k * k + l * l));
 
         float center = -(b / (2 * a));

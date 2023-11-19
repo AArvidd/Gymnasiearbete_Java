@@ -34,6 +34,10 @@ public class Ground {
     public int[] getColor(float x, float y) {
 
         int size = 5;
+        if (x < 0)
+            x = x * -1 + size - 1;
+        if (y < 0)
+            y = y * -1 + size - 1;
 
         boolean X = ((x % (size * 2)) - size) < 0;
         boolean Y = ((y % (size * 2)) - size) < 0;

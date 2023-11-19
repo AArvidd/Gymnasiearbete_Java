@@ -60,9 +60,9 @@ public class Camera {
 
             for (int pY = 0; pY < pixelHeight; pY++) {
 
-                pixelGridY[pX][pY] = xCord + this.X;
-                pixelGridX[pX][pY] = 1 + this.Y;
-                pixelGridZ[pX][pY] = (height / 2) - (deltaPixelY / 2) - (pY * deltaPixelY) + this.Z;
+                pixelGridY[pX][pY] = xCord;
+                pixelGridX[pX][pY] = 1;
+                pixelGridZ[pX][pY] = (height / 2) - (deltaPixelY / 2) - (pY * deltaPixelY);
 
             }
         }
