@@ -4,12 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3b6853aa-5a32-4314-be4b-79224c3bac3a" name="Changes" comment="Kjort klar funktionen och fixat buggar">
+    <list default="true" id="3b6853aa-5a32-4314-be4b-79224c3bac3a" name="Changes" comment="sista ändringar">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Camera.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Camera.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Ground.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Ground.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Ray.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Ray.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -90,7 +87,16 @@
       <workItem from="1699966497754" duration="1771000" />
       <workItem from="1700076817463" duration="3594000" />
       <workItem from="1700224862637" duration="4616000" />
-      <workItem from="1700414469882" duration="4779000" />
+      <workItem from="1700414469882" duration="5041000" />
+      <workItem from="1700470466528" duration="2717000" />
+      <workItem from="1700571224458" duration="9000" />
+      <workItem from="1700830789718" duration="1979000" />
+      <workItem from="1701075161060" duration="21000" />
+      <workItem from="1701175664190" duration="15000" />
+      <workItem from="1701620439094" duration="2525000" />
+      <workItem from="1701679890946" duration="7000" />
+      <workItem from="1701975136295" duration="1897000" />
+      <workItem from="1702034857000" duration="3967000" />
     </task>
     <task id="LOCAL-00001" summary="determend the position of eatch pixle">
       <option name="closed" value="true" />
@@ -140,7 +146,15 @@
       <option name="project" value="LOCAL" />
       <updated>1700228735014</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="sista ändringar">
+      <option name="closed" value="true" />
+      <created>1700428200255</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1700428200256</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -153,6 +167,7 @@
     <MESSAGE value="påbörga kåd för att hitta vilket obejekt rayen&#10;träffa först" />
     <MESSAGE value="la till reflektivitet på karken och fpbörga refliktivitet på kloten." />
     <MESSAGE value="Kjort klar funktionen och fixat buggar" />
-    <option name="LAST_COMMIT_MESSAGE" value="Kjort klar funktionen och fixat buggar" />
+    <MESSAGE value="sista ändringar" />
+    <option name="LAST_COMMIT_MESSAGE" value="sista ändringar" />
   </component>
 </project>

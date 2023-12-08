@@ -48,7 +48,7 @@ public class Ray {
 
         float x = X + A * intersection[0];
         float y = Y + B * intersection[0];
-        float z = Z + B * intersection[0];
+        float z = Z + C * intersection[0];
 
 
         int[] direct;
